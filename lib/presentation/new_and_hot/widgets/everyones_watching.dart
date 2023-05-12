@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:netflixclone/core/colors/colors.dart';
 import 'package:netflixclone/core/constans.dart';
+import 'package:netflixclone/core/models/result.dart';
 import 'package:netflixclone/presentation/home/widgets/custom_button.dart';
 import 'package:netflixclone/presentation/widgets/video_widgets.dart';
 
 class EveryonesWathingWidgets extends StatelessWidget {
   const EveryonesWathingWidgets({
     Key? key,
+    required this.movies,
   }) : super(key: key);
-
+  final Result movies;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,20 +18,20 @@ class EveryonesWathingWidgets extends StatelessWidget {
       children: [
         kheight,
         Text(
-          "Friends",
+          movies.title ?? 'unknown',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         kheight,
         Text(
-          "This hit sitcom follows the merry misadventure of six  20-something oais as they navigate the pitfalls of work,life and loves in 1990s Manhattam .",
+          movies.overview ?? 'Unknown',
           style: TextStyle(color: kgrey),
         ),
         kheight50,
-        VideoWidgets(),
+        VideoWidget(image: movies.backdropPath!),
         kheight,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [
+          children: const [
             CustomButton(
               icon: (Icons.share),
               title: "Share",

@@ -20,8 +20,8 @@ class BottomNavigationWidgets extends StatelessWidget {
           backgroundColor: Colors.black,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.grey,
-          selectedIconTheme: IconThemeData(color: Colors.white),
-          unselectedIconTheme: IconThemeData(color: Colors.grey),
+          selectedIconTheme: const IconThemeData(color: Colors.white),
+          unselectedIconTheme: const IconThemeData(color: Colors.grey),
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(

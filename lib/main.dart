@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflixclone/core/colors/colors.dart';
 import 'package:netflixclone/presentation/mainpage/sreen_main_page.dart';
+import 'package:netflixclone/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           textTheme: const TextTheme(
               bodyText1: TextStyle(color: Colors.white),
               bodyText2: TextStyle(color: Colors.white))),
-      home: ScreenMainPage(),
+      home: const SplashScreen(),
     );
   }
 }

@@ -4,8 +4,9 @@ import 'package:netflixclone/core/constans.dart';
 class Maincard extends StatelessWidget {
   const Maincard({
     Key? key,
+    required this.imageUrl,
   }) : super(key: key);
-
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,10 +15,9 @@ class Maincard extends StatelessWidget {
       height: 250,
       decoration: BoxDecoration(
         borderRadius: kradius10,
-        image: const DecorationImage(
+        image: DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage(
-              "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/wDWwtvkRRlgTiUr6TyLSMX8FCuZ.jpg"),
+          image: NetworkImage("https://image.tmdb.org/t/p/w500$imageUrl"),
         ),
       ),
     );

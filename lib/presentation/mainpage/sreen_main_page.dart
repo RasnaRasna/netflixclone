@@ -9,11 +9,11 @@ import 'package:netflixclone/presentation/search/screen_search.dart';
 
 class ScreenMainPage extends StatelessWidget {
   ScreenMainPage({super.key});
-  final _pages = [
-    ScreenHome(),
-    ScreenNewAndHot(),
-    ScreenFastLaugh(),
-    ScreenSearch(),
+  final List pages = [
+    const ScreenHome(),
+    const ScreenNewAndHot(),
+    const ScreenFastLaugh(),
+    const ScreenSearch(),
     ScreenDownloads(),
   ];
   @override
@@ -22,12 +22,12 @@ class ScreenMainPage extends StatelessWidget {
       body: SafeArea(
         child: ValueListenableBuilder(
           valueListenable: indexchangenotifier,
-          builder: (context, int index, _) {
-            return _pages[index];
+          builder: (context, index, child) {
+            return pages[index];
           },
         ),
       ),
-      bottomNavigationBar: BottomNavigationWidgets(),
+      bottomNavigationBar: const BottomNavigationWidgets(),
     );
   }
 }

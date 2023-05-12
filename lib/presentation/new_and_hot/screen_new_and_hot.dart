@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:netflixclone/core/colors/colors.dart';
 import 'package:netflixclone/core/constans.dart';
-import 'package:netflixclone/presentation/home/widgets/custom_button.dart';
+import 'package:netflixclone/presentation/home/widgets/functions/functions.dart';
+import 'package:netflixclone/presentation/new_and_hot/functions/functions.dart';
 import 'package:netflixclone/presentation/new_and_hot/widgets/coming_soon.dart';
 import 'package:netflixclone/presentation/new_and_hot/widgets/everyones_watching.dart';
-import 'package:netflixclone/presentation/widgets/app_bar.widget.dart';
-import 'package:netflixclone/presentation/widgets/video_widgets.dart';
 
 class ScreenNewAndHot extends StatelessWidget {
   const ScreenNewAndHot({super.key});
@@ -17,9 +15,9 @@ class ScreenNewAndHot extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(90),
+          preferredSize: const Size.fromHeight(90),
           child: AppBar(
-            title: Text(
+            title: const Text(
               "Hot & New",
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
@@ -41,10 +39,10 @@ class ScreenNewAndHot extends StatelessWidget {
                 labelColor: kblack,
                 unselectedLabelColor: kwhite,
                 labelStyle:
-                    TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 indicator:
                     BoxDecoration(color: kwhite, borderRadius: kradius30),
-                tabs: [
+                tabs: const [
                   Tab(
                     text: " 🍿 Comming Soon",
                   ),
@@ -63,15 +61,23 @@ class ScreenNewAndHot extends StatelessWidget {
 
 Widget _buildComingSoon() {
   return ListView.builder(
-    itemCount: 10,
-    itemBuilder: (BuildContext context, index) => ComingSoonWidgets(),
-  );
+      itemCount: 10,
+      itemBuilder: (BuildContext context, index) => Column(
+            children: [
+              kheight,
+              ComingSoonWidgets(
+                movie: HomeFunction.comingSoon[index],
+              )
+            ],
+          ));
 }
 
 Widget _buildEveryonesWatching() {
   return ListView.builder(
       itemCount: 10,
       itemBuilder: (context, index) {
-        return EveryonesWathingWidgets();
+        return EveryonesWathingWidgets(
+          movies: NewAndHotFunctions.discover[index],
+        );
       });
 }

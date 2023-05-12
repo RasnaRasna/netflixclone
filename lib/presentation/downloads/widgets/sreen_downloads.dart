@@ -3,11 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:netflixclone/core/colors/colors.dart';
 import 'package:netflixclone/core/constans.dart';
+import 'package:netflixclone/presentation/home/widgets/functions/functions.dart';
 import 'package:netflixclone/presentation/widgets/app_bar.widget.dart';
 
 class ScreenDownloads extends StatelessWidget {
   ScreenDownloads({super.key});
-  final _Widgets = [
+  final List _Widgets = [
     const SmartDownloads(),
     Section2(),
     const Section3(),
@@ -24,13 +25,15 @@ class ScreenDownloads extends StatelessWidget {
             )),
         body: ListView.separated(
             padding: const EdgeInsets.all(10),
-            itemBuilder: ((context, index) => _Widgets[index]),
-            separatorBuilder: ((context, index) => const SizedBox(
+            itemBuilder: (context, index) => _Widgets[index],
+            separatorBuilder: (context, index) => const SizedBox(
                   height: 25,
-                )),
+                ),
             itemCount: _Widgets.length));
   }
 }
+
+//section 1
 
 class SmartDownloads extends StatelessWidget {
   const SmartDownloads({
@@ -56,9 +59,11 @@ class SmartDownloads extends StatelessWidget {
 class Section2 extends StatelessWidget {
   Section2({super.key});
   final List imagelist = [
-    "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/v7UF7ypAqjsFZFdjksjQ7IUpXdn.jpg",
-    "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-    "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",
+    HomeFunction.comingSoon[2].posterPath,
+    HomeFunction.nowPlaying[6].posterPath, HomeFunction.topRated[1].posterPath
+    // "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/v7UF7ypAqjsFZFdjksjQ7IUpXdn.jpg",
+    // "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
+    // "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",
   ];
 
   @override
@@ -113,6 +118,8 @@ class Section2 extends StatelessWidget {
     );
   }
 }
+
+//section3
 
 class Section3 extends StatelessWidget {
   const Section3({super.key});
@@ -187,7 +194,9 @@ class DownloadsImagewidgets extends StatelessWidget {
             // color: kblack,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    fit: BoxFit.cover, image: NetworkImage(imagelist))),
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                        'https://image.tmdb.org/t/p/w500$imagelist'))),
           ),
         ),
       ),

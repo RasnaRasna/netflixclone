@@ -7,6 +7,8 @@ import 'package:netflixclone/presentation/home/widgets/number_title_card.dart';
 
 import 'package:netflixclone/presentation/widgets/main_title_card.dart';
 
+import 'functions/functions.dart';
+
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
 
 class ScreenHome extends StatelessWidget {
@@ -34,29 +36,35 @@ class ScreenHome extends StatelessWidget {
                   children: [
                     ListView(
                       children: [
-                        BackGroundCard(),
+                        const BackgroundCard(),
                         Maintitlecard(
                           title: "Released in the Past",
+                          category: HomeFunction.comingSoon,
                         ),
                         kheight,
                         Maintitlecard(
                           title: "Trending Now",
+                          category: HomeFunction.trending,
                         ),
                         kheight,
-                        NumberTitleCard(),
+                        const NumberTitleCard(
+                          title: "Top 10 TV Shows in India Today",
+                        ),
                         Maintitlecard(
                           title: "Tense Dramas",
+                          category: HomeFunction.nowPlaying,
                         ),
                         kheight,
                         Maintitlecard(
                           title: "South Indian Cinema",
+                          category: HomeFunction.topRated,
                         ),
                         kheight,
                       ],
                     ),
                     scrollNotifier.value == true
                         ? AnimatedContainer(
-                            duration: Duration(microseconds: 1000),
+                            duration: const Duration(microseconds: 1000),
                             width: double.infinity,
                             height: 90,
                             color: Colors.black.withOpacity(0.3),
@@ -65,15 +73,20 @@ class ScreenHome extends StatelessWidget {
                                 Row(
                                   children: [
                                     Image.network(
-                                      "https://www.freepnglogos.com/uploads/netflix-logo-circle-png-5.png",
+                                      'https://play-lh.googleusercontent.com/TBRwjS_qfJCSj1m7zZB93FnpJM5fSpMA_wUlFDLxWAb45T9RmwBvQd5cWR5viJJOhkI',
                                       width: 60,
                                       height: 60,
                                     ),
                                     const Spacer(),
-                                    const Icon(
-                                      Icons.cast,
-                                      size: 30,
-                                      color: Colors.white,
+                                    GestureDetector(
+                                      onTap: () async {
+                                        await HomeFunction.getTrending();
+                                      },
+                                      child: const Icon(
+                                        Icons.cast,
+                                        color: Colors.white,
+                                        size: 27,
+                                      ),
                                     ),
                                     KWidth,
                                     Container(
@@ -122,7 +135,7 @@ class ScreenHome extends StatelessWidget {
           color: kblack,
         ),
         label: const Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             'Play',
             style: TextStyle(fontSize: 20, color: kblack),

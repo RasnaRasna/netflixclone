@@ -4,8 +4,9 @@ import 'package:netflixclone/core/constans.dart';
 import 'package:bordered_text/bordered_text.dart';
 
 class NumberCard extends StatelessWidget {
-  const NumberCard({super.key, required this.index});
+  const NumberCard({super.key, required this.index, required this.image});
   final int index;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -21,10 +22,9 @@ class NumberCard extends StatelessWidget {
               height: 200,
               decoration: BoxDecoration(
                 borderRadius: kradius10,
-                image: const DecorationImage(
+                image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(
-                      "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/3zunvPLgM9qGFr8ob2BpaKSuAJI.jpg"),
+                  image: NetworkImage('https://image.tmdb.org/t/p/w500$image'),
                 ),
               ),
             ),
@@ -38,7 +38,7 @@ class NumberCard extends StatelessWidget {
             strokeWidth: 10.0,
             child: Text(
               "${index + 1}",
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 140,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,

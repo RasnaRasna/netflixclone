@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:netflixclone/core/constans.dart';
+import 'package:netflixclone/presentation/search/widgets/functions/functions.dart';
 import 'package:netflixclone/presentation/search/widgets/titile.dart';
 
 const imageurl =
-    "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/v7UF7ypAqjsFZFdjksjQ7IUpXdn.jpg";
+    'https://www.themoviedb.org/t/p/w440_and_h660_face/rM5Y0ziZbmpkqW1db2HK3xrzTXj.jpg';
 
 class SearchResultWidgets extends StatelessWidget {
   const SearchResultWidgets({super.key});
@@ -16,33 +17,42 @@ class SearchResultWidgets extends StatelessWidget {
       children: [
         const SearchTextTitle(title: 'Movies & Tv'),
         kheight,
-        Expanded(
-          child: GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            childAspectRatio: 1 / 1.4,
-            children: List.generate(20, (index) {
-              return MainCard();
-            }),
-          ),
-        ),
+        ValueListenableBuilder(
+            valueListenable: SearchFunction.searchData,
+            builder: (context, value, child) {
+              return Expanded(
+                child: GridView.count(
+                  shrinkWrap: true,
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  childAspectRatio: 1 / 1.4,
+                  children: List.generate(
+                      value.length,
+                      (index) => MainCard(
+                            image: value[index].posterPath ??
+                                'https://www.themoviedb.org/t/p/w440_and_h660_face/rM5Y0ziZbmpkqW1db2HK3xrzTXj.jpg',
+                          )),
+                ),
+              );
+            })
       ],
     );
   }
 }
 
 class MainCard extends StatelessWidget {
-  const MainCard({super.key});
-
+  const MainCard({super.key, required this.image});
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          image: const DecorationImage(
-              image: NetworkImage(imageurl), fit: BoxFit.cover),
-          borderRadius: BorderRadius.circular(7)),
+        borderRadius: const BorderRadius.all(Radius.circular(5)),
+        image: DecorationImage(
+            image: NetworkImage('https://image.tmdb.org/t/p/w500$image'),
+            fit: BoxFit.cover),
+      ),
     );
   }
 }
